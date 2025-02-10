@@ -1,0 +1,36 @@
+pkgname=frzscr-git
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="Freeze screen (wayland)"
+arch=("x86_64")
+url="https://github.com/heather7283/frzscr"
+license=("None")
+depends=(
+    wayland
+)
+makedepends=(
+    git
+    meson
+)
+conflicts=(frzscr-bin) # when????
+source=(
+    "git+https://github.com/heather7283/frzscr.git"
+)
+noextract=()
+b2sums=('SKIP')
+
+pkgver(){
+    cd "frzscr"
+    echo "${pkgver}.$(git rev-parse --short HEAD)"
+}
+
+build(){
+    cd "frzscr"
+    meson setup -Dbindir=/usr/bin build
+    meson compile -C build
+}
+
+package(){
+    cd "frzscr"
+    meson install -C build --destdir "$pkgdir"
+}
