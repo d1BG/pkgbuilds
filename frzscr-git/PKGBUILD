@@ -1,5 +1,5 @@
 pkgname=frzscr-git
-pkgver=0.0.1
+pkgver=0.0.0.ignoreMe
 pkgrel=1
 pkgdesc="Freeze screen (wayland)"
 arch=("x86_64")
@@ -20,6 +20,7 @@ noextract=()
 b2sums=('SKIP')
 
 pkgver(){
+    pkgver="0.0.1"
     cd "frzscr"
     echo "${pkgver}.$(git rev-parse --short HEAD)"
 }
