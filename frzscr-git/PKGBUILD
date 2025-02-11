@@ -22,7 +22,7 @@ b2sums=('SKIP')
 pkgver(){
     pkgver="0.0.1"
     cd "frzscr"
-    echo "${pkgver}.$(git rev-parse --short HEAD)"
+    echo "${pkgver}.r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 build(){
