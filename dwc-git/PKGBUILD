@@ -1,5 +1,5 @@
 pkgname=dwc-git
-pkgver=0.0.1.ignoreMe
+pkgver=0.1.ignoreMe
 pkgrel=1
 pkgdesc="Dawn Winery Compositor - dwc"
 arch=("x86_64")
