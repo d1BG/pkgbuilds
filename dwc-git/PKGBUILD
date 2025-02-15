@@ -1,0 +1,46 @@
+pkgname=dwc-git
+pkgver=0.0.1.ignoreMe
+pkgrel=1
+pkgdesc="Dawn Winery Compositor - dwc"
+arch=("x86_64")
+url="https://github.com/danebidev/dwc"
+license=("MIT")
+depends=(
+    wlroots-git
+    libxkbcommon
+    libinput
+    wayland
+    wayland-protocols
+)
+makedepends=(
+    git
+    meson
+    ninja
+)
+optdepends=(
+    'foot: terminal emulator'
+)
+provides=("wayland-compositor")
+conflicts=(dwc-bin) # when????
+source=(
+    "git+https://github.com/danebidev/dwc.git"
+)
+noextract=()
+b2sums=('SKIP')
+
+pkgver(){
+    pkgver="0.1"
+    cd "dwc"
+    echo "${pkgver}.r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+build(){
+    cd "dwc"
+    meson setup -Dbindir=/usr/bin build
+    ninja -C build
+}
+
+package(){
+    cd "dwc"
+    meson install -C build --destdir "$pkgdir"
+}
