@@ -1,0 +1,40 @@
+pkgname=xdg-desktop-portal-no-retina-damage-git
+_pkgname=xdg-desktop-portal-termfilechooser
+pkgver=0.0.1.ignoreMe
+pkgrel=1
+pkgdesc="A terminal based xdg-desktop-portal filechooser backend."
+arch=("x86_64")
+url="https://github.com/heather7283/xdg-desktop-portal-termfilechooser"
+license=("MIT")
+provides=("xdg-desktop-portal-impl")
+depends=(
+    xdg-desktop-portal
+    wayland
+)
+makedepends=(
+    git
+    meson
+)
+conflicts=(xdg-desktop-portal-no-retina-damage-bin) # when????
+source=(
+    "git+https://github.com/heather7283/xdg-desktop-portal-termfilechooser.git"
+)
+noextract=()
+b2sums=('SKIP')
+
+pkgver(){
+    pkgver="0.0.1"
+    cd "xdg-desktop-portal-termfilechooser"
+    echo "${pkgver}.r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+build(){
+    cd "xdg-desktop-portal-termfilechooser"
+    arch-meson build -Dsd-bus-provider=libsystemd
+    meson compile -C build
+}
+
+package(){
+    cd "xdg-desktop-portal-termfilechooser"
+    meson install -C build --destdir "${pkgdir}" 
+}
