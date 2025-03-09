@@ -10,6 +10,7 @@ depends=(
     libxkbcommon
     wayland
     wayland-protocols
+    libinput
 )
 makedepends=(
     git
@@ -17,7 +18,8 @@ makedepends=(
     ninja
 )
 optdepends=(
-    'xwayland-satellie: Recommended for xwayland'
+    'pixman: for software rendering'
+    'xwayland-satellie: better support for xwayland'
     'slurp: taking screenshots'
     'grim: taking screenshots'
     'swappy: annotating screenshots'
