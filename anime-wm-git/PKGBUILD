@@ -19,7 +19,7 @@ makedepends=(
 )
 optdepends=(
     'pixman: for software rendering'
-    'xwayland-satellie: better support for xwayland'
+    'xwayland-satellite: better support for xwayland'
     'slurp: taking screenshots'
     'grim: taking screenshots'
     'swappy: annotating screenshots'
