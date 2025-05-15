@@ -27,11 +27,11 @@ pkgver(){
 
 build(){
     cd "frzscr"
-    meson setup -Dbindir=/usr/bin build
-    meson compile -C build
+    arch-meson setup
+    meson compile -C setup
 }
 
 package(){
     cd "frzscr"
-    meson install -C build --destdir "$pkgdir"
+    meson install -C setup --destdir "$pkgdir"
 }
