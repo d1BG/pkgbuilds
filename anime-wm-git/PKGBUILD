@@ -1,10 +1,10 @@
 pkgname=anime-wm-git
-pkgver=0.0.1.ignoreMe
+pkgver=0.3.0.r526.681588f
 pkgrel=1
 pkgdesc="wlroots compositor - anime-wm"
 arch=("x86_64")
 url="https://github.com/dy-tea/awm"
-license=("MIT-0")
+license=("GPL-3.0")
 depends=(
     wlroots-git
     libxkbcommon
@@ -25,7 +25,7 @@ optdepends=(
     'swappy: annotating screenshots'
 )
 provides=("wayland-compositor")
-conflicts=(awm-bin) # when????
+conflicts=(anime-wm) # when????
 source=(
     "git+https://github.com/dy-tea/awm.git"
 )
@@ -33,18 +33,18 @@ noextract=()
 b2sums=('SKIP')
 
 pkgver(){
-    pkgver="0.0.1"
+    pkgver="0.3.0"
     cd "awm"
     echo "${pkgver}.r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 build(){
     cd "awm"
-    meson setup -Dbindir=/usr/bin build
-    ninja -C build
+    arch-meson --wrap-mode default setup
+    ninja -C setup
 }
 
 package(){
     cd "awm"
-    meson install -C build --destdir "$pkgdir"
+    meson install -C setup --destdir "$pkgdir"
 }
