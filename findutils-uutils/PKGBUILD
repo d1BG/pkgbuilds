@@ -1,0 +1,47 @@
+# PKGBUILD by: Chocobo1 <chocobo1 AT archlinux DOT net>
+# Modified by d1bg 
+pkgname=findutils-uutils
+pkgver=0.8.0
+pkgrel=1
+pkgdesc="Rust implementation of findutils"
+arch=('i686' 'x86_64')
+url="https://github.com/uutils/findutils"
+license=('MIT')
+conflicts=(findutils)
+provides=(findutils)
+depends=('gcc-libs' 'oniguruma')
+makedepends=('cargo')
+source=("$pkgname-$pkgver-src.tar.gz::https://github.com/uutils/findutils/releases/download/$pkgver/source.tar.gz")
+sha256sums=('SKIP')
+
+
+prepare() {
+  cd "findutils-$pkgver"
+
+  if [ ! -f "Cargo.lock" ]; then
+    cargo update
+  fi
+  cargo fetch
+}
+
+check() {
+  cd "findutils-$pkgver"
+
+  #cargo test \
+  #  --frozen
+}
+
+package() {
+  cd "findutils-$pkgver"
+
+  RUSTONIG_DYNAMIC_LIBONIG=1 \
+  cargo install \
+    --locked \
+    --no-track \
+    --root "$pkgdir/usr" \
+    --path .
+
+  install -Dm644 "LICENSE" -t "$pkgdir/usr/share/licenses/uutils-findutils"
+
+  rm "$pkgdir/usr/bin/testing-commandline"
+}
