@@ -25,7 +25,7 @@ optdepends=(
     'swappy: annotating screenshots'
 )
 provides=("wayland-compositor")
-conflicts=(anime-wm) # when????
+conflicts=(anime-wm)
 source=(
     "git+https://github.com/dy-tea/awm.git"
 )
