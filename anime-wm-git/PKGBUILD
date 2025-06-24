@@ -1,5 +1,5 @@
 pkgname=anime-wm-git
-pkgver=0.3.0.r526.681588f
+pkgver=0.3.1.r551.bf0922a
 pkgrel=1
 pkgdesc="wlroots compositor - anime-wm"
 arch=("x86_64")
@@ -33,7 +33,7 @@ noextract=()
 b2sums=('SKIP')
 
 pkgver(){
-    pkgver="0.3.0"
+    pkgver="0.3.1"
     cd "awm"
     echo "${pkgver}.r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
