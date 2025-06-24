@@ -1,0 +1,43 @@
+pkgname=anime-wm
+pkgver=0.3.1
+pkgrel=1
+pkgdesc="wlroots compositor - anime-wm"
+arch=("x86_64")
+url="https://github.com/dy-tea/awm"
+license=("GPL-3.0")
+depends=(
+    wlroots-git
+    libxkbcommon
+    wayland
+    wayland-protocols
+    libinput
+)
+makedepends=(
+    git
+    meson
+    ninja
+)
+optdepends=(
+    'pixman: for software rendering'
+    'xwayland-satellite: better support for xwayland'
+    'slurp: taking screenshots'
+    'grim: taking screenshots'
+    'swappy: annotating screenshots'
+)
+provides=("wayland-compositor")
+conflicts=(anime-wm-git) # when????
+source=("$pkgname-$pkgver-src.tar.gz::https://github.com/dy-tea/awm/archive/refs/tags/$pkgver.tar.gz")
+noextract=()
+b2sums=('SKIP')
+
+build(){
+    ls -la
+    cd "awm-$pkgver"
+    arch-meson --wrap-mode default setup
+    ninja -C setup
+}
+
+package(){
+    cd "awm-$pkgver"
+    meson install -C setup --destdir "$pkgdir"
+}
