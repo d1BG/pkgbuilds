@@ -1,5 +1,5 @@
 pkgname=anime-wm
-pkgver=0.3.1
+pkgver=0.4.1
 pkgrel=1
 pkgdesc="wlroots compositor - anime-wm"
 arch=("x86_64")
@@ -26,12 +26,19 @@ optdepends=(
 )
 provides=("wayland-compositor")
 conflicts=(anime-wm-git)
-source=("$pkgname-$pkgver-src.tar.gz::https://github.com/dy-tea/awm/archive/refs/tags/$pkgver.tar.gz")
+source=("$pkgname-$pkgver-src.tar.gz::https://github.com/dy-tea/awm/archive/refs/tags/$pkgver.tar.gz"
+        "git+https://github.com/dy-tea/tomlcpp"
+        "git+https://github.com/dy-tea/backward-cpp")
 noextract=()
-b2sums=('SKIP')
+b2sums=('SKIP'
+        'SKIP'
+        'SKIP')
+
+prepare() {
+    mv tomlcpp backward-cpp "awm-$pkgver/subprojects/"
+}
 
 build(){
-    ls -la
     cd "awm-$pkgver"
     arch-meson --wrap-mode default setup
     ninja -C setup
