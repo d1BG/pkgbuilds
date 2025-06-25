@@ -27,15 +27,13 @@ optdepends=(
 provides=("wayland-compositor")
 conflicts=(anime-wm-git)
 source=("$pkgname-$pkgver-src.tar.gz::https://github.com/dy-tea/awm/archive/refs/tags/$pkgver.tar.gz"
-        "git+https://github.com/dy-tea/tomlcpp"
-        "git+https://github.com/dy-tea/backward-cpp")
+        "git+https://github.com/dy-tea/tomlcpp")
 noextract=()
 b2sums=('SKIP'
-        'SKIP'
         'SKIP')
 
 prepare() {
-    mv tomlcpp backward-cpp "awm-$pkgver/subprojects/"
+    mv tomlcpp "awm-$pkgver/subprojects/"
 }
 
 build(){
