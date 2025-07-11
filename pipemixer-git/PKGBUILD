@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc="Pipemixer - Like pulsemixer, but for pipewire"
 arch=("x86_64")
 url="https://github.com/heather7283/pipemixer"
-license=("None")
+license=("GPL-3.0")
 depends=(
     libpipewire
     ncurses
