@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc="Freeze screen (wayland)"
 arch=("x86_64")
 url="https://github.com/heather7283/frzscr"
-license=("None")
+license=("GPL-3.0")
 depends=(
     wayland
 )
