@@ -5,7 +5,7 @@ pkgrel=1
 pkgdesc="A terminal based xdg-desktop-portal filechooser backend."
 arch=("x86_64")
 url="https://github.com/heather7283/xdg-desktop-portal-termfilechooser"
-license=("MIT")
+license=("GPL-3.0")
 provides=("xdg-desktop-portal-impl")
 depends=(
     xdg-desktop-portal
