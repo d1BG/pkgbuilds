@@ -1,0 +1,41 @@
+pkgname=pipemixer-git
+pkgver=0.1.2.r209.db8b2f5
+pkgrel=1
+pkgdesc="Pipemixer - Like pulsemixer, but for pipewire"
+arch=("x86_64")
+url="https://github.com/heather7283/pipemixer"
+license=("None")
+depends=(
+    libpipewire
+    ncurses
+)
+makedepends=(
+    git
+    meson
+    libinih
+    stb
+)
+conflicts=(pipemixer) 
+source=(
+    "git+https://github.com/heather7283/pipemixer"
+)
+noextract=()
+b2sums=('SKIP')
+
+pkgver(){
+    pkgver="0.1.2"
+    cd "pipemixer"
+    echo "${pkgver}.r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+build(){
+    cd "pipemixer"
+    arch-meson setup
+    meson compile -C setup
+}
+
+package(){
+    cd "pipemixer"
+    meson install -C setup --destdir "$pkgdir"
+}
+
