@@ -8,11 +8,11 @@ license=("None")
 depends=(
     libpipewire
     ncurses
+    libinih
 )
 makedepends=(
     git
     meson
-    libinih
     stb
 )
 conflicts=(pipemixer) 
