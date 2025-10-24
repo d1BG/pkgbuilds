@@ -1,5 +1,5 @@
 pkgname=anime-wm-git
-pkgver=0.4.1.r561.9b05d82
+pkgver=0.5.2.r629.770565f
 pkgrel=1
 pkgdesc="wlroots compositor - anime-wm"
 arch=("x86_64")
